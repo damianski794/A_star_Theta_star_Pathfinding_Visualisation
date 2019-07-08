@@ -19,7 +19,7 @@ public:
 	Node(int x_square, int y_square);
 
 };
-Node::Node(int x_square, int y_square) :Square(x_square, y_square){}
+Node::Node(int x_square=0, int y_square=0) :Square(x_square, y_square){}//=0 (jako parametry domyslne) dodalem zeby sie program nie wywalal
 
 inline bool operator < (const Node& lhs, const Node& rhs)
 {//We need to overload "<" to put our struct into a set

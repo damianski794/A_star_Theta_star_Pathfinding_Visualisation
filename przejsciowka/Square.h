@@ -25,7 +25,7 @@ Square::Square(int x,int y) {
 	shape.setOrigin(square_size / 2.f, square_size / 2.f);
 	shape.setSize(sf::Vector2f{ float(square_size),float(square_size) });
 	shape.setFillColor(sf::Color::White);
-	shape.setOutlineColor(sf::Color::Black);
-	shape.setOutlineThickness(5.f);
+	shape.setOutlineColor(sf::Color::Blue);
+	shape.setOutlineThickness(1.5f);
 	shape.setPosition(sf::Vector2f{ float(0.5*square_size + x * square_size),float(0.5*square_size + y * square_size) });
 }
