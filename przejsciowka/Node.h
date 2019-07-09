@@ -51,3 +51,10 @@ inline bool operator < (const Node& lhs, const Node& rhs)
 	 return H;
  }
 
+ static float pixel_x(int x) {
+	 return float(x*X_STEP)+X_STEP/2.f;
+ }
+ static float pixel_y(int y) {
+	 return float(y*Y_STEP)+Y_STEP/2.f;
+ }
+
