@@ -10,16 +10,17 @@
 #include <iostream>
 #include <array>
 #include "Square.h"
+#include <iostream>
 
 using namespace std;
 
 const int columns = Y_MAX / Y_STEP; // ew. na odwrot powinny byc kolumny i wiersze
 const int rows = X_MAX / X_STEP;
 
-void draw_map(array<array<Node, columns>, rows> mapka,sf::RenderWindow& window){
-	for (int x = 0; x < rows; x++) {
-		for (int y = 0; x < columns; y++) {
-			window.draw(mapka[x][y].shape);
+void draw_map(array<array<Node, columns>, rows> &mapka,sf::RenderWindow& window){
+	for (int i = 0; i < rows; i++) {
+		for (int j = 0; j < columns; j++) {
+			window.draw(mapka[i][j].shape);
 		}
 	}
 }
@@ -28,20 +29,22 @@ void draw_map(array<array<Node, columns>, rows> mapka,sf::RenderWindow& window){
 //usunalem jpeg.lib z dodatykowych bibliotek
 int main()
 {
-	Square s1(0,0);
-	Square s2(2,1);
-	Square s3(1, 0);
 
-	//array<array<Node, columns>, rows> mapka;
-	/*for (int i = 0; i < rows; i++) {
+	array<array<Node, columns>, rows> mapka;
+	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {
-			mapka[i][j].x = i;
-			mapka[i][j].y = j;
+			mapka[i][j] = Node(i, j);
 		}
-	}*/
+	}
+
+	sf::VertexArray lines(sf::LinesStrip, 2);
+	lines[0].position = sf::Vector2f(float(mapka[5][5].x), float(mapka[5][5].y));
+	lines[0].position= sf::Vector2f(float(mapka[10][10].x), float(mapka[10][10].y));
+	//lines.color TU DODAJ KOLOR
 
 	sf::RenderWindow window( sf::VideoMode(X_MAX,Y_MAX),"A star visualisation" );
 	sf::Event event;
+
 
 
 	while (window.isOpen())
@@ -53,34 +56,11 @@ int main()
 		std::cout << "test" << std::endl;
 		
 		window.clear(sf::Color::Black);
-		//window.draw(ball);
-		//ball.update();
-		//draw_map(mapka, window);
-		window.draw(s1);
-		window.draw(s2);
-		window.draw(s3);
+		
+		draw_map(mapka, window);
+		window.draw(lines);
+		
 		window.display();
 	}
 }
 
-
-//int main()
-//{
-//	Ball ball(400, 300);
-//	sf::RenderWindow window{ sf::VideoMode{800,600},"giereczka" };
-//	window.setFramerateLimit(60);
-//	sf::Event event;
-//	while (window.isOpen())
-//	{
-//		window.pollEvent(event);
-//		
-//		if (event.type == sf::Event::Closed)
-//			window.close();
-//		std::cout << "test" << std::endl;
-//
-//		window.clear(sf::Color::Black);
-//		window.draw(ball);
-//		ball.update();
-//		window.display();
-//	}
-//}
