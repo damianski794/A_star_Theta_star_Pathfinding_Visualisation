@@ -1,7 +1,10 @@
 #pragma once
 #include"window_dimensions.h"
 #include "Square.h"
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 #include <cmath>
+#include <array>
 
 class Node:public Square
 {
@@ -15,6 +18,7 @@ public:
 	float fCost;
 
 	bool isObstacle = false;
+	bool isCheckedByA_Star = false;
 
 	Node(int x_square, int y_square);
 
@@ -25,6 +29,8 @@ inline bool operator < (const Node& lhs, const Node& rhs)
 {//We need to overload "<" to put our struct into a set
 	return lhs.fCost < rhs.fCost;
 }
+
+//dodaj zmiane obstacle/non obstacle przez klikniecie w mape
 
 //uwaga usuniete
  static bool isValid(int x, int y) { //If our Node is an obstacle it is not valid
@@ -45,16 +51,16 @@ inline bool operator < (const Node& lhs, const Node& rhs)
 	 return false;
  }
 
- static double calculateH(int x, int y, Node dest) {
+ static double calculateH(int x, int y, Node dest) { //heurystyka jako odleglosc typu pitagorasa: (sqrt(x^2=y^2))
 	 double H = (sqrt((x - dest.x)*(x - dest.x)
 		 + (y - dest.y)*(y - dest.y)));
 	 return H;
  }
 
- static float pixel_x(int x) {
+ static float pixel_x(int x) { //zwraca numer pixela x gdy dane jest polozenie Node.x
 	 return float(x*X_STEP)+X_STEP/2.f;
  }
- static float pixel_y(int y) {
+ static float pixel_y(int y) { //zwraca numer pixela y gdy dane jest polozenie Node.y
 	 return float(y*Y_STEP)+Y_STEP/2.f;
  }
 

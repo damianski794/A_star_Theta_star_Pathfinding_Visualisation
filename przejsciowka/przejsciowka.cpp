@@ -20,12 +20,25 @@ const int rows = X_MAX / X_STEP;
 void draw_map(array<array<Node, columns>, rows> &mapka,sf::RenderWindow& window){
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {
+			if (mapka[i][j].isObstacle){
+				mapka[i][j].shape.setFillColor(sf::Color::Black);
+			}
+			else if(mapka[i][j].isCheckedByA_Star){
+				mapka[i][j].shape.setFillColor(sf::Color::Magenta);
+			}
+			else
+				mapka[i][j].shape.setFillColor(sf::Color::White);
 			window.draw(mapka[i][j].shape);
 		}
 	}
 }
 
 void draw_path(vector<Node>& path,sf::RenderWindow& window) { //UWAGA na REFERENCJE
+	if (path.size() == 0) {
+		cout << "sciezka ma dlugosc 0 - brak sciezki" << endl;
+		return;
+	}
+
 	sf::VertexArray lines(sf::LinesStrip, 2);
 	
 	for (auto t = path.begin(); t != path.end() && path.size() > 0; ++t) {
@@ -48,14 +61,18 @@ int main()
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {
 			mapka[i][j] = Node(i, j);
+			if (i*j % (j+10) == 0 && i>5)
+				mapka[i][j].isObstacle = true; //dodawanie przeszkod
+			//if ((i + j) % 10 == 0)
+			//	mapka[i][j].isCheckedByA_Star = true; //dodawanie sprawdzenia czy a* iterowal po danym node
 		}
 	}
 
-	sf::VertexArray lines(sf::LinesStrip, 2);
+	/*sf::VertexArray lines(sf::LinesStrip, 2);
 	lines[0].position = sf::Vector2f(pixel_x(mapka[5][5].x), pixel_y(mapka[5][5].y));
 	lines[0].color = sf::Color::Red;
 	lines[1].position= sf::Vector2f(pixel_x(mapka[10][10].x), pixel_y(mapka[10][10].y));
-	lines[1].color = sf::Color::Red;
+	lines[1].color = sf::Color::Red;*/
 	
 	
 	//test przykladowej sciezki:
@@ -71,9 +88,10 @@ int main()
 	test_path.push_back(mapka[12][10]);
 	test_path.push_back(mapka[5][8]);
 	test_path.push_back(mapka[2][2]);
-
+	//koniec przykladowej sciezki
 
 	sf::RenderWindow window( sf::VideoMode(X_MAX,Y_MAX),"A star visualisation" );
+	window.setFramerateLimit(1);
 	sf::Event event;
 
 
@@ -86,12 +104,11 @@ int main()
 			window.close();
 		//std::cout << "test" << std::endl;
 		
-		window.clear(sf::Color::Black);
+		//window.clear(sf::Color::Black);
 		
 		draw_map(mapka, window);
 		//window.draw(lines);
 		draw_path(test_path,window);
-		
 		window.display();
 	}
 }
