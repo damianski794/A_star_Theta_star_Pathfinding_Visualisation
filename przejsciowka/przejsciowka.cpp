@@ -1,6 +1,3 @@
-// przejsciowka.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include "pch.h"
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
@@ -64,17 +61,11 @@ int main()
 			if (i*j % (j+10) == 0 && i>5)
 				mapka[i][j].isObstacle = true; //dodawanie przeszkod
 			//if ((i + j) % 10 == 0)
-			//	mapka[i][j].isCheckedByA_Star = true; //dodawanie sprawdzenia czy a* iterowal po danym node
+				//mapka[i][j].isCheckedByA_Star = true; //dodawanie sprawdzenia czy a* iterowal po danym node
 		}
 	}
 
-	/*sf::VertexArray lines(sf::LinesStrip, 2);
-	lines[0].position = sf::Vector2f(pixel_x(mapka[5][5].x), pixel_y(mapka[5][5].y));
-	lines[0].color = sf::Color::Red;
-	lines[1].position= sf::Vector2f(pixel_x(mapka[10][10].x), pixel_y(mapka[10][10].y));
-	lines[1].color = sf::Color::Red;*/
-	
-	
+
 	//test przykladowej sciezki:
 	mapka[12][10].parentX = 5;
 	mapka[12][10].parentY = 8;
@@ -91,9 +82,11 @@ int main()
 	//koniec przykladowej sciezki
 
 	sf::RenderWindow window( sf::VideoMode(X_MAX,Y_MAX),"A star visualisation" );
-	window.setFramerateLimit(1);
+	window.setFramerateLimit(25);
 	sf::Event event;
 
+	int current_mouse_pos_x=1;
+	int current_mouse_pos_y=1;
 
 
 	while (window.isOpen())
@@ -102,14 +95,24 @@ int main()
 				
 		if (event.type == sf::Event::Closed)
 			window.close();
-		//std::cout << "test" << std::endl;
-		
-		//window.clear(sf::Color::Black);
+
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+			//tutaj cos dodac o dodawaniu/usuwaniu przeszkod
+			//if (x_from_pixel(sf::Mouse::getPosition(window).x) != current_mouse_pos_x && y_from_pixel(sf::Mouse::getPosition(window).y) != current_mouse_pos_y) {
+			//	sf::Mouse::getPosition(window);
+
+				mapka[x_from_pixel(sf::Mouse::getPosition(window).x)][y_from_pixel(sf::Mouse::getPosition(window).y)].isObstacle
+					= !mapka[x_from_pixel(sf::Mouse::getPosition(window).x)][y_from_pixel(sf::Mouse::getPosition(window).y)].isObstacle;
+			//}
+			//current_mouse_pos_x = x_from_pixel(sf::Mouse::getPosition(window).x);
+			//current_mouse_pos_y = y_from_pixel(sf::Mouse::getPosition(window).y);
+		}
 		
 		draw_map(mapka, window);
 		//window.draw(lines);
 		draw_path(test_path,window);
 		window.display();
+		
 	}
 }
 

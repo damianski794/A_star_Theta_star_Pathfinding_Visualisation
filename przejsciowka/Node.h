@@ -32,6 +32,7 @@ inline bool operator < (const Node& lhs, const Node& rhs)
 
 //dodaj zmiane obstacle/non obstacle przez klikniecie w mape
 
+
 //uwaga usuniete
  static bool isValid(int x, int y) { //If our Node is an obstacle it is not valid
 	int id = x + y * (X_MAX / X_STEP);
@@ -64,3 +65,20 @@ inline bool operator < (const Node& lhs, const Node& rhs)
 	 return float(y*Y_STEP)+Y_STEP/2.f;
  }
 
+ static int x_from_pixel(float px) {
+	 float f = px / X_STEP;
+	 int g = px / X_STEP;
+	 if (f > g)
+		 return g;
+	 else
+		 return g - 1;
+ }
+
+ static int y_from_pixel(float py) {
+	 float f = py / Y_STEP;
+	 int g = py / Y_STEP;
+	 if (f > g)
+		 return g;
+	 else
+		 return g - 1;
+ }
