@@ -78,7 +78,8 @@ inline bool operator < (const Node& lhs, const Node& rhs)
 	 return H;
  }
  static double my_calcutateH(Node& current_node, Node& destination) {
-	 return sqrt((current_node.x - destination.x)*(current_node.x - destination.x) - (current_node.y - destination.y)*(current_node.y - destination.y));
+	 return fabs(current_node.x - destination.x) + fabs(current_node.y - destination.y);
+	 // return sqrt((current_node.x - destination.x)*(current_node.x - destination.x) - (current_node.y - destination.y)*(current_node.y - destination.y));
  }
 
  static float pixel_x(int x) { //zwraca numer pixela x gdy dane jest polozenie Node.x

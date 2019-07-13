@@ -106,7 +106,7 @@ int main()
 				std::cout << "wcisnieto A: " << std::endl;
 				//path_designed_by_A_star = my_A_Star(mapka, poczatek, destination);
 				//wyznaczoa_przez_a_star = my_A_Star(mapka, mapka[5][3], mapka[10][10]);
-				my_A_Star(mapka, mapka[5][3], mapka[10][10]);
+				my_A_Star(mapka, mapka[0][0], mapka[24][49],window);
 				//my_A_Star(mapka, mapka[7][7], mapka[20][20]);
 				//testowane(mapka,poczatek,destination);
 			}

@@ -154,18 +154,19 @@ static std::vector<Node> aStar(Node player, Node dest) {
 }
 
 
-//zmienilem std::vector<Node> na void
-static void my_A_Star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node& current_Node, Node& destination_Node) {
+//zmienilem std::vector<Node> na void na czas testowania
+static void my_A_Star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node& current_Node, Node& destination_Node, sf::RenderWindow& window) {
 
 	//std::cout << "test" << std::endl;
 	std::vector<Node> empty;// return empty;
 	if (my_isValid(destination_Node) == false) {
 		std::cout << "destination is an obstacle, returning empty path" << std::endl;
 		//return empty; zmienilem
-
+		return;
 	}
 	if (my_isDestination(current_Node, destination_Node)) {
-		std::cout << "your at the destination, returning empty path" << std::endl;
+		std::cout << "you are at the destination, returning empty path" << std::endl;
+		return;
 		//return empty; //zmienilem
 	}
 	
@@ -178,7 +179,7 @@ static void my_A_Star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_
 		for (int j = 0; j < Y_MAX / Y_STEP; j++) {
 			mapka[i][j].fCost = FLT_MAX;
 			mapka[i][j].gCost = FLT_MAX;
-			mapka[i][j].hCost = FLT_MAX;
+			mapka[i][j].hCost = my_calcutateH(mapka[i][j],destination_Node); //zmienilem z FLT_MAX
 			mapka[i][j].parentX = -1;
 			mapka[i][j].parentY = -1; 
 
@@ -231,6 +232,12 @@ static void my_A_Star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_
 				double gNew, hNew, fNew;
 				std::cout << "sprawdzam sasiadow"<< std::endl;
 				if (my_isValid_xy(i + newX, j + newY, mapka)) {
+
+					//pokazujemy, ktore nody sa sprawdzane
+					mapka[i + newX][j + newY].shape.setFillColor(sf::Color::Magenta);
+					window.draw(mapka[i + newX][j + newY].shape);
+					window.display();
+
 					if (my_isDestination(mapka[i + newX][j + newY], destination_Node)) {
 						mapka[i + newX][j + newY].parentX = i;
 						mapka[i + newX][j + newY].parentY = j;
@@ -238,6 +245,7 @@ static void my_A_Star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_
 						std::cout << "znaleziono droge!!!" << std::endl << std::endl;
 
 						//return makePath(mapka, destination_Node); zmienilem
+						return;
 					}
 
 					else if (closedList[i + newX][j + newY] == false) {
@@ -251,6 +259,7 @@ static void my_A_Star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_
 							mapka[i + newX][j + newY].hCost = hNew;
 							mapka[i + newX][j + newY].parentX = i;
 							mapka[i + newX][j + newY].parentY = j;
+
 							openList.emplace_back(mapka[i + newX][j + newY]);
 						}
 					}
@@ -261,6 +270,7 @@ static void my_A_Star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_
 	if (destination_found == false) {
 		std::cout << "destination not found :/" << std::endl;
 		//return empty; zmienilem
+		return;
 	}
 }
 
