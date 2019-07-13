@@ -44,6 +44,11 @@ inline bool operator < (const Node& lhs, const Node& rhs)
 	}
 	return false;
 }
+ static bool my_isValid(Node& node) {
+	 if (node.isObstacle)
+		 return false;
+	 return true;
+ }
 
  static bool isDestination(int x, int y, Node dest) {
 	 if (x == dest.x && y == dest.y) {
@@ -51,11 +56,20 @@ inline bool operator < (const Node& lhs, const Node& rhs)
 	 }
 	 return false;
  }
+ static bool my_isDestination(Node& current_node, Node& destination)
+ {
+	 if (current_node.x == destination.x && current_node.y == destination.y)
+		 return true;
+	 return false;
+ }
 
- static double calculateH(int x, int y, Node dest) { //heurystyka jako odleglosc typu pitagorasa: (sqrt(x^2=y^2))
+ static double calculateH(int x, int y, Node dest) { //heurystyka jako odleglosc typu pitagorasa: (sqrt(x^2+y^2))
 	 double H = (sqrt((x - dest.x)*(x - dest.x)
 		 + (y - dest.y)*(y - dest.y)));
 	 return H;
+ }
+ static double my_calcutateH(Node& current_node, Node& destination) {
+	 return sqrt((current_node.x - destination.x)*(current_node.x - destination.x) - (current_node.y - destination.y)*(current_node.y - destination.y));
  }
 
  static float pixel_x(int x) { //zwraca numer pixela x gdy dane jest polozenie Node.x

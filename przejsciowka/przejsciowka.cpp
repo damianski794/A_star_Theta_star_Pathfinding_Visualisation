@@ -82,7 +82,7 @@ int main()
 	//koniec przykladowej sciezki
 
 	sf::RenderWindow window( sf::VideoMode(X_MAX,Y_MAX),"A star visualisation" );
-	window.setFramerateLimit(25);
+	window.setFramerateLimit(200);
 	sf::Event event;
 
 	int current_mouse_pos_x=1;
@@ -91,26 +91,24 @@ int main()
 
 	while (window.isOpen())
 	{
-		window.pollEvent(event);
-				
-		if (event.type == sf::Event::Closed)
-			window.close();
-
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
-			//tutaj cos dodac o dodawaniu/usuwaniu przeszkod
-			//if (x_from_pixel(sf::Mouse::getPosition(window).x) != current_mouse_pos_x && y_from_pixel(sf::Mouse::getPosition(window).y) != current_mouse_pos_y) {
-			//	sf::Mouse::getPosition(window);
-
-				mapka[x_from_pixel(sf::Mouse::getPosition(window).x)][y_from_pixel(sf::Mouse::getPosition(window).y)].isObstacle
-					= !mapka[x_from_pixel(sf::Mouse::getPosition(window).x)][y_from_pixel(sf::Mouse::getPosition(window).y)].isObstacle;
-			//}
-			//current_mouse_pos_x = x_from_pixel(sf::Mouse::getPosition(window).x);
-			//current_mouse_pos_y = y_from_pixel(sf::Mouse::getPosition(window).y);
+		while (window.pollEvent(event)) {
+			if (event.type == sf::Event::Closed) {
+				window.close();
+			}
 		}
-		
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {//ustawianie przeszkod
+			mapka[x_from_pixel(sf::Mouse::getPosition(window).x)][y_from_pixel(sf::Mouse::getPosition(window).y)].isObstacle
+				= true;
+		}
+	
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) { //usuwanie przeszkod
+			mapka[x_from_pixel(sf::Mouse::getPosition(window).x)][y_from_pixel(sf::Mouse::getPosition(window).y)].isObstacle
+				= false;
+		}
+
+
 		draw_map(mapka, window);
-		//window.draw(lines);
-		draw_path(test_path,window);
+		draw_path(test_path, window);
 		window.display();
 		
 	}

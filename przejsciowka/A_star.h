@@ -151,3 +151,9 @@ static vector<Node> makePath(array<array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 		cout << e.what() << endl;
 	}
 }
+
+static vector<Node> my_A_Star(array<array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& map, Node& current_Node, Node& dest) {
+
+	vector<Node> empty;
+	//if()
+}
