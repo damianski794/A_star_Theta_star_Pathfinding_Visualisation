@@ -1,12 +1,18 @@
 ﻿  przejsciowka.cpp
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\node.h(93): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\node.h(102): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(100): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(138): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(139): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(140): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(249): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(250): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(251): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(116): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int
           ]
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(105): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(121): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int

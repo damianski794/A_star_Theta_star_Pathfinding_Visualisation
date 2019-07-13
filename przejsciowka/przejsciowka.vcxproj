@@ -159,16 +159,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="A_star.h" />
-    <ClInclude Include="Ball.h" />
-    <ClInclude Include="Map.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Square.h" />
     <ClInclude Include="window_dimensions.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Ball.cpp" />
-    <ClCompile Include="Map.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
