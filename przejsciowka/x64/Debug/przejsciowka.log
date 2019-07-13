@@ -1,6 +1,6 @@
 ﻿  przejsciowka.cpp
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\node.h(84): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\node.h(93): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\node.h(102): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(100): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [

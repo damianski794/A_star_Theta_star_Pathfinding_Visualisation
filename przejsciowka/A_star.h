@@ -152,8 +152,99 @@ static vector<Node> makePath(array<array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 	}
 }
 
-static vector<Node> my_A_Star(array<array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& map, Node& current_Node, Node& dest) {
+static vector<Node> my_A_Star(array<array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node& current_Node, Node& destination_Node) {
 
 	vector<Node> empty;
-	//if()
+	if (my_isValid(destination_Node) == false) {
+		cout << "destination is an obstacle, returning empty path" << endl;
+		return empty;
+	}
+	if (my_isDestination(current_Node, destination_Node)) {
+		cout << "your at the destination, returning empty path" << endl;
+		return empty;
+	}
+
+	bool closedList[(X_MAX / X_STEP)][(Y_MAX / Y_STEP)];
+
+	for (int i = 0; i < X_MAX / X_STEP; i++) {
+		for (int j = 0; j < Y_MAX / Y_STEP; j++) {
+			mapka[i][j].fCost = FLT_MAX;
+			mapka[i][j].gCost = FLT_MAX;
+			mapka[i][j].hCost = FLT_MAX;
+			mapka[i][j].parentX = -1;
+			mapka[i][j].parentY = -1;
+
+			closedList[i][j] = false;
+		}
+	}
+
+	int i = current_Node.x;
+	int j = current_Node.y;
+
+	mapka[i][j].fCost = 0;
+	mapka[i][j].gCost = 0;
+	mapka[i][j].hCost = 0;
+	mapka[i][j].parentX = i;
+	mapka[i][j].parentY = j;
+
+	vector<Node> openList;
+	openList.emplace_back(mapka[i][j]);
+
+	bool destination_found = false;
+
+	while (!openList.empty() && openList.size() < (X_MAX / X_STEP)*(Y_MAX / Y_STEP)) {
+		Node node;
+		do {
+			float temp = FLT_MAX;
+			vector<Node>::iterator itNode;
+			for (vector<Node>::iterator it = openList.begin();
+				it != openList.end(); next(it)) {
+				Node n = *it;
+				if (n.fCost < temp) {
+					temp = n.fCost;
+					itNode = it;
+				}
+			}
+			node = *itNode;
+			openList.erase(itNode);
+		} while (my_isValid(node) == false);
+
+		i = node.x;
+		j = node.y;
+		closedList[i][j] = true;
+
+		for (int newX = -1; newX <= 1; newX++) {
+			for (int newY = -1; newY <= 1; newY++) {
+				double gNew, hNew, fNew;
+				if (my_isValid_xy(i + newX, j + newY, mapka)) {
+					if (my_isDestination(mapka[i + newX][j + newY], destination_Node)) {
+						mapka[i + newX][j + newY].parentX = i;
+						mapka[i + newX][j + newY].parentY = j;
+						destination_found = true;
+						cout << "znaleziono droge!!!" << endl << endl;
+
+						return makePath(mapka, destination_Node);
+					}
+
+					else if (closedList[i + newX][j + newY] == false) {
+						gNew = node.gCost + 1;
+						hNew = my_calcutateH(mapka[i + newX][j + newY], destination_Node);
+						fNew = gNew + hNew;
+
+						if (mapka[i + newX][j + newY].fCost == FLT_MAX || mapka[i + newX][j + newY].fCost > fNew) {
+							mapka[i + newX][j + newY].fCost = fNew;
+							mapka[i + newX][j + newY].gCost = gNew;
+							mapka[i + newX][j + newY].hCost = hNew;
+							mapka[i + newX][j + newY].parentX = i;
+							mapka[i + newX][j + newY].parentY = j;
+						}
+					}
+				}
+			}
+		}
+	}
+	if (destination_found == false) {
+		cout << "destination not found :/" << endl;
+		return empty;
+	}
 }

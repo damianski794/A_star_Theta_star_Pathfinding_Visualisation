@@ -47,6 +47,15 @@ inline bool operator < (const Node& lhs, const Node& rhs)
  static bool my_isValid(Node& node) {
 	 if (node.isObstacle)
 		 return false;
+	 if (node.x < 0 || node.x >= X_MAX / X_STEP || node.y < 0 || node.y >= Y_MAX / Y_STEP)
+		 return false;
+	 return true;
+ }
+ static bool my_isValid_xy(int x, int y, std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka) { 
+	 if (x < 0 || x >= X_MAX / X_STEP || y < 0 || y >= Y_MAX / Y_STEP)
+		 return false;
+	 if (mapka[x][y].isObstacle == true)
+		 return false;
 	 return true;
  }
 
