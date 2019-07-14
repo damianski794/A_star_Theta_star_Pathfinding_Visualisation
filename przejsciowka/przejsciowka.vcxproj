@@ -159,6 +159,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="A_star.h" />
+    <ClInclude Include="a_star_14_07_d.h" />
+    <ClInclude Include="a_star_with_set.h" />
+    <ClInclude Include="A_star_with_sorted_vector.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Square.h" />

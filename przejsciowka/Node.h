@@ -11,8 +11,8 @@ class Node:public Square
 public:
 	int y = y_square;
 	int x = x_square;
-	int parentX;
-	int parentY;
+	int parentX = 0; //dla testu czy sie sciezka bedzie odpalala
+	int parentY = 0; //
 	float gCost;
 	float hCost;
 	float fCost;
@@ -20,7 +20,16 @@ public:
 	bool isObstacle = false;
 	bool isCheckedByA_Star = false;
 
+	bool isInCloseList = false;
+
 	Node(int x_square, int y_square);
+
+	bool operator==(const Node& right) {
+		if (this->x == right.x && this->y == right.y) {
+			return true;
+		}
+		return false;
+	}
 
 };
 Node::Node(int x_square=0, int y_square=0) :Square(x_square, y_square){}//=0 (jako parametry domyslne) dodalem zeby sie program nie wywalal
@@ -28,6 +37,14 @@ Node::Node(int x_square=0, int y_square=0) :Square(x_square, y_square){}//=0 (ja
 inline bool operator < (const Node& lhs, const Node& rhs)
 {//We need to overload "<" to put our struct into a set
 	return lhs.fCost < rhs.fCost;
+}
+
+bool compareNode(const Node& lhs, const Node& rhs) {
+	return lhs.fCost < rhs.fCost;
+}
+
+bool compareNode_first_bigger(const Node& lhs, const Node& rhs) {
+	return lhs.fCost >= rhs.fCost;
 }
 
 //dodaj zmiane obstacle/non obstacle przez klikniecie w mape

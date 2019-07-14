@@ -9,6 +9,11 @@
 #include "Square.h"
 #include <vector>
 #include "A_star.h"
+#include "a_star_with_set.h"
+#include "A_star_with_sorted_vector.h"
+#include "a_star_14_07_d.h"
+
+#include <Windows.h>
 
 //using namespace std;
 
@@ -49,6 +54,26 @@ void draw_path(std::vector<Node>& path,sf::RenderWindow& window) { //UWAGA na RE
 		//std::cout << "rysuje linie z " << t->x << "," << t->y << "  do " << t->parentX << "," << t->parentY << std::endl;
 	}
 }
+
+//void draw_path(std::array<std::array<Node, columns>, rows> &mapka, Node destination, sf::RenderWindow& window) {
+//	sf::VertexArray lines(sf::LinesStrip, 2);
+//	int X = destination.x;
+//	int Y = destination.y;
+//	std::cout << "test" << std::endl;
+//	std::cout << "rysuje droge z: (" << mapka[X][Y].x << "," << mapka[X][Y].y << ") do (" << mapka[X][Y].parentX << "," << mapka[X][Y].parentY << ")" << std::endl;
+//	while (!(mapka[X][Y].x == mapka[X][Y].parentX && mapka[X][Y].y == mapka[X][Y].parentY) && mapka[X][Y].x != -1 && mapka [X][Y].y != -1) { //zmienione
+//		lines[0].position = sf::Vector2f(pixel_x(mapka[X][Y].x), pixel_y(mapka[X][Y].y));
+//		lines[0].color = sf::Color::Red;
+//		lines[1].position = sf::Vector2f(pixel_x(mapka[X][Y].parentX), pixel_y(mapka[X][Y].parentY));
+//		lines[1].color = sf::Color::Red;
+//
+//		std::cout << "X,Y: " << mapka[X][Y].x <<","<< mapka[X][Y].y <<" --> "<< mapka[X][Y].parentX<<","<< mapka[X][Y].parentY<< std::endl;
+//		X = mapka[X][Y].parentX;
+//		Y = mapka[X][Y].parentY;
+//
+//		window.draw(lines);
+//	}
+//}
 //
 //UWAGA
 //usunalem jpeg.lib z dodatykowych bibliotek
@@ -59,6 +84,8 @@ int main()
 	for (int i = 0; i < rows; i++) {
 		for (int j = 0; j < columns; j++) {
 			mapka[i][j] = Node(i, j);
+			mapka[i][j].parentX = i;
+			mapka[i][j].parentY = j;
 			//if (i*j % (j+10) == 0 && i>5)
 			//	mapka[i][j].isObstacle = true; //dodawanie przeszkod
 			//if ((i + j) % 10 == 0)
@@ -72,18 +99,18 @@ int main()
 	std::vector<Node> wyznaczoa_przez_a_star;
 
 	//test przykladowej sciezki:
-	mapka[12][10].parentX = 5;
-	mapka[12][10].parentY = 8;
+	//mapka[12][10].parentX = 5;
+	//mapka[12][10].parentY = 8;
 
-	mapka[5][8].parentX = 2;
-	mapka[5][8].parentY = 2;
+	//mapka[5][8].parentX = 2;
+	//mapka[5][8].parentY = 2;
 
-	mapka[2][2].parentX = 2;
-	mapka[2][2].parentY = 10;
-	std::vector<Node> test_path;
-	test_path.push_back(mapka[12][10]);
-	test_path.push_back(mapka[5][8]);
-	test_path.push_back(mapka[2][2]);
+	//mapka[2][2].parentX = 2;
+	//mapka[2][2].parentY = 10;
+	//std::vector<Node> test_path;
+	//test_path.push_back(mapka[12][10]);
+	//test_path.push_back(mapka[5][8]);
+	//test_path.push_back(mapka[2][2]);
 	//koniec przykladowej sciezki
 
 	sf::RenderWindow window( sf::VideoMode(X_MAX,Y_MAX),"A star visualisation" );
@@ -93,6 +120,8 @@ int main()
 	int current_mouse_pos_x=1;
 	int current_mouse_pos_y=1;
 
+	Node solution = mapka[0][0]; // inicjalizowanie jakakolwiek wartoscia
+	bool a_star_started = false;
 	std::vector<Node> path_designed_by_A_star;
 	while (window.isOpen())
 	{
@@ -103,11 +132,15 @@ int main()
 
 			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::A)
 			{
+				a_star_started = true;
 				std::cout << "wcisnieto A: " << std::endl;
 				//path_designed_by_A_star = my_A_Star(mapka, poczatek, destination);
 				//wyznaczoa_przez_a_star = my_A_Star(mapka, mapka[5][3], mapka[10][10]);
-				my_A_Star(mapka, mapka[0][0], mapka[24][49],window);
-				//my_A_Star(mapka, mapka[7][7], mapka[20][20]);
+				//solution = my_A_Star_returning_Node(mapka, mapka[0][0], mapka[20][7],window);
+				//my_A_Star(mapka, mapka[0][0], mapka[49][24],window);
+				//my_A_Star_with_set(mapka, mapka[0][0], mapka[49][24], window);
+				//my_A_Star_with_sorted_vector(mapka, mapka[0][0], mapka[22][10], window);
+				a_star_rzezba(mapka, mapka[0][0], mapka[0][20], window);
 				//testowane(mapka,poczatek,destination);
 			}
 		}
@@ -124,10 +157,15 @@ int main()
 
 
 		draw_map(mapka, window);
-		
-		draw_path(test_path, window);
+		if (a_star_started) {
+			//draw_path(mapka, solution, window);
+		}
+		//draw_path(test_path, window);
 		window.display();
-		
+		if (a_star_started) {
+			Sleep(3000);
+			a_star_started = false;
+		}
 	}
 }
 

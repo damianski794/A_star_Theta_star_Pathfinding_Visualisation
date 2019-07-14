@@ -2,6 +2,7 @@
 
 #include "window_dimensions.h"
 #include "Node.h"
+#include <Windows.h>
 
 #include <vector>
 #include <array>
@@ -9,6 +10,42 @@
 
 #include <iostream>
 
+#include <Windows.h>
+void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node destination, sf::RenderWindow& window) {
+	sf::VertexArray lines(sf::LinesStrip, 2);
+	int X = destination.x;
+	int Y = destination.y;
+	
+	//std::cout << "test" << std::endl;
+	std::cout << "rysuje droge z: (" << mapka[X][Y].x << "," << mapka[X][Y].y << ") do (" << mapka[X][Y].parentX << "," << mapka[X][Y].parentY << ")" << std::endl;
+	while (mapka[X][Y].y != -1 && X != -1 && Y != -1 && !(mapka[X][Y].x == mapka[X][Y].parentX && mapka[X][Y].y == mapka[X][Y].parentY) && mapka[X][Y].x != -1) { //zmienione
+		lines[0].position = sf::Vector2f(pixel_x(mapka[X][Y].x), pixel_y(mapka[X][Y].y));
+		lines[0].color = sf::Color::Black;
+		lines[1].position = sf::Vector2f(pixel_x(mapka[X][Y].parentX), pixel_y(mapka[X][Y].parentY));
+		lines[1].color = sf::Color::Black;
+
+		//mapka[X][Y].shape.setFillColor(sf::Color::Green);
+		//window.draw(mapka[X][Y]);
+		//mapka[mapka[X][Y].parentX][mapka[X][Y].parentY].shape.setFillColor(sf::Color::Green);
+		//window.draw(mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]);
+	
+		//sf::Vertex line[] = { sf::Vertex(sf::Vector2f(pixel_x(mapka[X][Y].x), pixel_y(mapka[X][Y].y)),sf::Vector2f(pixel_x(mapka[X][Y].parentX), pixel_y(mapka[X][Y].parentY))) };
+		//line->color = sf::Color::Red;
+		std::cout << "X,Y: " << mapka[X][Y].x << "," << mapka[X][Y].y << " --> " << mapka[X][Y].parentX << "," << mapka[X][Y].parentY << "\t";
+		X = mapka[X][Y].parentX;
+		Y = mapka[X][Y].parentY;
+		std::cout << "wywalilo sie na: " <<X<<","<<Y<< std::endl;
+		//window.draw(line, 2, sf::Lines);
+		
+
+		window.draw(lines); 
+		
+	}
+	window.display();
+	std::cout << "sleeping" << std::endl;
+	Sleep(3000);
+	std::cout << "end of sleeping" << std::endl;
+}
 //using namespace std;
 static std::vector<Node> makePath(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)> map, Node dest) {
 	try {
@@ -38,6 +75,7 @@ static std::vector<Node> makePath(std::array<std::array<Node, (Y_MAX / Y_STEP)>,
 		return usablePath;
 	}
 	catch (const std::exception& e) {
+		std::cout << "wywalilo blad" << std::endl;
 		std::cout << e.what() << std::endl;
 	}
 }
@@ -180,8 +218,8 @@ static void my_A_Star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_
 			mapka[i][j].fCost = FLT_MAX;
 			mapka[i][j].gCost = FLT_MAX;
 			mapka[i][j].hCost = my_calcutateH(mapka[i][j],destination_Node); //zmienilem z FLT_MAX
-			mapka[i][j].parentX = -1;
-			mapka[i][j].parentY = -1; 
+			mapka[i][j].parentX = i;
+			mapka[i][j].parentY = j; 
 
 			closedList[i][j] = false;
 		}
@@ -242,14 +280,19 @@ static void my_A_Star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_
 						mapka[i + newX][j + newY].parentX = i;
 						mapka[i + newX][j + newY].parentY = j;
 						destination_found = true;
-						std::cout << "znaleziono droge!!!" << std::endl << std::endl;
+						std::cout << "znaleziono droge!!!" << std::endl<<"a jest ona taka:" << std::endl;
+
+						draw_path(mapka, mapka[i + newX][j + newY], window);
 
 						//return makePath(mapka, destination_Node); zmienilem
 						return;
 					}
 
 					else if (closedList[i + newX][j + newY] == false) {
-						gNew = node.gCost + 1;
+						if((newX==-1 && newY == -1) || (newX == -1 && newY == 1) || (newX == 1 && newY == -1) || (newX == 1 && newY == 1))
+							gNew = node.gCost + 1.4;
+						else
+							gNew = node.gCost + 1;
 						hNew = my_calcutateH(mapka[i + newX][j + newY], destination_Node);
 						fNew = gNew + hNew;
 
@@ -271,6 +314,128 @@ static void my_A_Star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_
 		std::cout << "destination not found :/" << std::endl;
 		//return empty; zmienilem
 		return;
+	}
+}
+
+static Node my_A_Star_returning_Node(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node& current_Node, Node& destination_Node, sf::RenderWindow& window) {
+
+	//std::cout << "test" << std::endl;
+	std::vector<Node> empty;// return empty;
+	if (my_isValid(destination_Node) == false) {
+		std::cout << "destination is an obstacle, returning empty path" << std::endl;
+		//return empty; zmienilem
+		return current_Node;
+	}
+	if (my_isDestination(current_Node, destination_Node)) {
+		std::cout << "you are at the destination, returning empty path" << std::endl;
+		return destination_Node;
+		//return empty; //zmienilem
+	}
+
+
+	bool closedList[(X_MAX / X_STEP)][(Y_MAX / Y_STEP)];
+	//std::cout << "coping all" << std::endl;
+	//std::array<std::array < Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)> allMap = mapka; //zmienic
+	//std::cout << "all copied" << std::endl;
+	for (int i = 0; i < X_MAX / X_STEP; i++) {
+		for (int j = 0; j < Y_MAX / Y_STEP; j++) {
+			mapka[i][j].fCost = FLT_MAX;
+			mapka[i][j].gCost = FLT_MAX;
+			mapka[i][j].hCost = my_calcutateH(mapka[i][j], destination_Node); //zmienilem z FLT_MAX
+			mapka[i][j].parentX = -1;
+			mapka[i][j].parentY = -1;
+
+			closedList[i][j] = false;
+		}
+	}
+
+	int i = current_Node.x;
+	int j = current_Node.y;
+
+	mapka[i][j].fCost = 0;
+	mapka[i][j].gCost = 0;
+	mapka[i][j].hCost = 0;
+	mapka[i][j].parentX = i;
+	mapka[i][j].parentY = j;
+
+	std::vector<Node> openList;
+	std::cout << "rozmiar openList przed emplace = " << openList.size() << std::endl;
+	openList.emplace_back(mapka[i][j]);
+	std::cout << "rozmiar openList po emplace = " << openList.size() << std::endl;
+	bool destination_found = false;
+
+	while (!openList.empty() && openList.size() < (X_MAX / X_STEP)*(Y_MAX / Y_STEP)) {
+		std::cout << "wewnatrz glownej petli !openList.empty() && openList.size()" << std::endl;
+		Node node;
+		do {
+			float temp = FLT_MAX;
+			std::cout << "za temp = flt_max" << std::endl;
+			std::vector<Node>::iterator itNode;
+			for (std::vector<Node>::iterator it = openList.begin();
+				it != openList.end(); ++it) { //zamiast next(it) biore ++it
+				std::cout << "wewnatrz iteratora" << std::endl;
+				Node n = *it;
+				if (n.fCost < temp) {
+					temp = n.fCost;
+					itNode = it;
+				}
+			}
+			node = *itNode;
+			openList.erase(itNode);
+			std::cout << "wewnatrz do while(my_isValid(node) == false) " << std::endl;
+		} while (my_isValid(node) == false);
+
+		i = node.x;
+		j = node.y;
+		closedList[i][j] = true;
+		std::cout << "przed sasiednimi nodami" << std::endl;
+		for (int newX = -1; newX <= 1; newX++) {
+			for (int newY = -1; newY <= 1; newY++) {
+				double gNew, hNew, fNew;
+				std::cout << "sprawdzam sasiadow" << std::endl;
+				if (my_isValid_xy(i + newX, j + newY, mapka)) {
+
+					//pokazujemy, ktore nody sa sprawdzane
+					mapka[i + newX][j + newY].shape.setFillColor(sf::Color::Magenta);
+					window.draw(mapka[i + newX][j + newY].shape);
+					window.display();
+
+					if (my_isDestination(mapka[i + newX][j + newY], destination_Node)) {
+						mapka[i + newX][j + newY].parentX = i;
+						mapka[i + newX][j + newY].parentY = j;
+						destination_found = true;
+						std::cout << "znaleziono droge!!!" << std::endl << std::endl;
+
+						//return makePath(mapka, destination_Node); zmienilem
+						return mapka[i + newX][j + newY];
+					}
+
+					else if (closedList[i + newX][j + newY] == false) {
+						if ((newX == -1 && newY == -1) || (newX == -1 && newY == 1) || (newX == 1 && newY == -1) || (newX == 1 && newY == 1))
+							gNew = node.gCost + 1.4; 
+						else
+							gNew = node.gCost + 1;
+						hNew = my_calcutateH(mapka[i + newX][j + newY], destination_Node);
+						fNew = gNew + hNew;
+
+						if (mapka[i + newX][j + newY].fCost == FLT_MAX || mapka[i + newX][j + newY].fCost > fNew) {
+							mapka[i + newX][j + newY].fCost = fNew;
+							mapka[i + newX][j + newY].gCost = gNew;
+							mapka[i + newX][j + newY].hCost = hNew;
+							mapka[i + newX][j + newY].parentX = i;
+							mapka[i + newX][j + newY].parentY = j;
+
+							openList.emplace_back(mapka[i + newX][j + newY]);
+						}
+					}
+				}
+			}
+		}
+	}
+	if (destination_found == false) {
+		std::cout << "destination not found :/" << std::endl;
+		//return empty; zmienilem
+		return current_Node;
 	}
 }
 
