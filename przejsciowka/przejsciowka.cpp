@@ -140,7 +140,7 @@ int main()
 				//my_A_Star(mapka, mapka[0][0], mapka[49][24],window);
 				//my_A_Star_with_set(mapka, mapka[0][0], mapka[49][24], window);
 				//my_A_Star_with_sorted_vector(mapka, mapka[0][0], mapka[22][10], window);
-				a_star_rzezba(mapka, mapka[0][0], mapka[0][20], window);
+				a_star_rzezba_bede_kombinowal_z_heurystyka(mapka, mapka[0][0], mapka[43][20], window);
 				//testowane(mapka,poczatek,destination);
 			}
 		}

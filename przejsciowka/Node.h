@@ -44,7 +44,7 @@ bool compareNode(const Node& lhs, const Node& rhs) {
 }
 
 bool compareNode_first_bigger(const Node& lhs, const Node& rhs) {
-	return lhs.fCost >= rhs.fCost;
+	return lhs.fCost > rhs.fCost;
 }
 
 //dodaj zmiane obstacle/non obstacle przez klikniecie w mape

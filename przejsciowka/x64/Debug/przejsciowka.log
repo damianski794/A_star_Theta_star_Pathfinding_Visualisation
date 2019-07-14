@@ -19,7 +19,11 @@ d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_with_sorted_vector.h(115): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_with_sorted_vector.h(116): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_with_sorted_vector.h(117): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_14_07_d.h(112): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_14_07_d.h(25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_14_07_d.h(114): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_14_07_d.h(87): warning C4101: 'Fnew': unreferenced local variable
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_14_07_d.h(159): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_14_07_d.h(249): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(149): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
