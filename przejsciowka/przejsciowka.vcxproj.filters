@@ -39,6 +39,9 @@
     <ClInclude Include="a_star_14_07_d.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="A_star_vector_of_pointers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">

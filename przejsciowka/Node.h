@@ -5,6 +5,7 @@
 #include <SFML/Window.hpp>
 #include <cmath>
 #include <array>
+#include <memory>
 
 class Node:public Square
 {
@@ -45,6 +46,10 @@ bool compareNode(const Node& lhs, const Node& rhs) {
 
 bool compareNode_first_bigger(const Node& lhs, const Node& rhs) {
 	return lhs.fCost > rhs.fCost;
+}
+
+bool compareNode_first_bigger_pointer(std::unique_ptr<Node> lhs, std::unique_ptr<Node> rhs) {
+	return lhs->fCost > rhs->fCost;
 }
 
 //dodaj zmiane obstacle/non obstacle przez klikniecie w mape

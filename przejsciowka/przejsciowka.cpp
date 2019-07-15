@@ -12,6 +12,7 @@
 #include "a_star_with_set.h"
 #include "A_star_with_sorted_vector.h"
 #include "a_star_14_07_d.h"
+#include "A_star_vector_of_pointers.h"
 
 #include <Windows.h>
 
@@ -141,7 +142,9 @@ int main()
 				//my_A_Star_with_set(mapka, mapka[0][0], mapka[49][24], window);
 				//my_A_Star_with_sorted_vector(mapka, mapka[0][0], mapka[22][10], window);
 				//a_star_rzezba_bede_kombinowal_z_heurystyka(mapka, mapka[0][0], mapka[43][20], window);
-				a_star_wiki(mapka, mapka[0][0], mapka[43][20], window);
+				//a_star_wiki(mapka, mapka[0][0], mapka[43][20], window);
+				a_star_vector_of_pointers(mapka, mapka[0][0], mapka[43][20], window);
+
 				//testowane(mapka,poczatek,destination);
 			}
 		}
@@ -164,7 +167,7 @@ int main()
 		//draw_path(test_path, window);
 		window.display();
 		if (a_star_started) {
-			Sleep(3000);
+			Sleep(1500);
 			a_star_started = false;
 		}
 	}
