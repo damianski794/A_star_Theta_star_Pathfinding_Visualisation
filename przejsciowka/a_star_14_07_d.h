@@ -69,7 +69,7 @@ static void a_star_rzezba(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX 
 			
 		}
 	}
-	std::vector<Node> openset;
+	std::vector<Node> openset;//
 	mapka[current_Node.x][current_Node.y].gCost = 0;
 	mapka[current_Node.x][current_Node.y].fCost = 0; //uwaga, moze byc bez sensu
 	openset.emplace_back(mapka[current_Node.x][current_Node.y]);

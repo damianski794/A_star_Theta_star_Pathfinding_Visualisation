@@ -143,8 +143,8 @@ int main()
 				//my_A_Star_with_sorted_vector(mapka, mapka[0][0], mapka[22][10], window);
 				//a_star_rzezba_bede_kombinowal_z_heurystyka(mapka, mapka[0][0], mapka[43][20], window);
 				//a_star_wiki(mapka, mapka[0][0], mapka[43][20], window);
-				a_star_vector_of_pointers(mapka, mapka[0][0], mapka[43][20], window);
-
+				//a_star_vector_of_pointers(mapka, mapka[0][0], mapka[43][20], window);
+				a_star_rzezba(mapka, mapka[0][0], mapka[43][20], window);
 				//testowane(mapka,poczatek,destination);
 			}
 		}
