@@ -1,17 +1,17 @@
 ﻿  przejsciowka.cpp
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\node.h(119): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\node.h(128): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(176): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(177): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(178): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(220): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(300): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(301): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(302): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(344): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(422): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(423): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(424): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(179): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(180): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(181): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(223): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(303): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(304): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(305): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(347): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(425): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(426): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(427): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_with_set.h(123): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_with_set.h(124): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_with_set.h(125): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
@@ -26,14 +26,16 @@ d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_14_07_d.h(285): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_14_07_d.h(331): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_14_07_d.h(424): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_vector_of_pointers.h(25): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_vector_of_pointers.h(123): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(153): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_vector_of_pointers.h(61): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_vector_of_pointers.h(159): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_vector_of_pointers.h(211): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star_vector_of_pointers.h(318): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(154): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int
           ]
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(158): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(159): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int

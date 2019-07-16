@@ -37,6 +37,9 @@ void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>&
 		std::cout << "wywalilo sie na: " <<X<<","<<Y<< std::endl;
 		//window.draw(line, 2, sf::Lines);
 		
+		if (X == -1 || Y == -1) {
+			break;
+		}
 
 		window.draw(lines); 
 		
