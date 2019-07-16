@@ -6,6 +6,7 @@
 #include <cmath>
 #include <array>
 #include <memory>
+#include <vector>
 
 class Node:public Square
 {
@@ -31,7 +32,6 @@ public:
 		}
 		return false;
 	}
-
 };
 Node::Node(int x_square=0, int y_square=0) :Square(x_square, y_square){}//=0 (jako parametry domyslne) dodalem zeby sie program nie wywalal
 
@@ -48,8 +48,11 @@ bool compareNode_first_bigger(const Node& lhs, const Node& rhs) {
 	return lhs.fCost > rhs.fCost;
 }
 
-bool compareNode_first_bigger_pointer(std::unique_ptr<Node> lhs, std::unique_ptr<Node> rhs) {
-	return lhs->fCost > rhs->fCost;
+//bool compareNode_first_bigger_pointer(std::vector<Node*>::iterator lhs, std::vector<Node*>::iterator rhs) {
+	//return lhs->fCost > rhs->fCost;	
+//}
+bool compareNode_first_bigger_pointer(Node* lhs, Node* rhs) {
+	return lhs->fCost > rhs->fCost;	
 }
 
 //dodaj zmiane obstacle/non obstacle przez klikniecie w mape
@@ -101,7 +104,7 @@ bool compareNode_first_bigger_pointer(std::unique_ptr<Node> lhs, std::unique_ptr
  }
  static double my_calcutateH(Node& current_node, Node& destination) {
 	 return fabs(current_node.x - destination.x) + fabs(current_node.y - destination.y);
-	 // return sqrt((current_node.x - destination.x)*(current_node.x - destination.x) - (current_node.y - destination.y)*(current_node.y - destination.y));
+	 //return sqrt((current_node.x - destination.x)*(current_node.x - destination.x) - (current_node.y - destination.y)*(current_node.y - destination.y));
  }
 
  static float pixel_x(int x) { //zwraca numer pixela x gdy dane jest polozenie Node.x
