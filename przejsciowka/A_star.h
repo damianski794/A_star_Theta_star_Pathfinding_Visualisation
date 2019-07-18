@@ -12,41 +12,50 @@
 
 #include <Windows.h>
 void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node destination, sf::RenderWindow& window) {
-	sf::VertexArray lines(sf::LinesStrip, 2);
+
+	//z innego algorytmu:
+	for (int i = 0; i < 12; i++) {
+		for (int j = 0; j < 12; j++) {
+			std::cout << "" << i << "," << j << " --> parent " << mapka[i][j].parentX << "," << mapka[i][j].parentY << std::endl;
+		}
+	}
+	std::cout << std::endl << std::endl;
+
+	//sf::VertexArray lines(sf::LinesStrip, 2);
 	int X = destination.x;
 	int Y = destination.y;
 	
 	//std::cout << "test" << std::endl;
-	std::cout << "rysuje droge z: (" << mapka[X][Y].x << "," << mapka[X][Y].y << ") do (" << mapka[X][Y].parentX << "," << mapka[X][Y].parentY << ")" << std::endl;
-	while (mapka[X][Y].y != -1 && X != -1 && Y != -1 && !(mapka[X][Y].x == mapka[X][Y].parentX && mapka[X][Y].y == mapka[X][Y].parentY) && mapka[X][Y].x != -1) { //zmienione
-		lines[0].position = sf::Vector2f(pixel_x(mapka[X][Y].x), pixel_y(mapka[X][Y].y));
-		lines[0].color = sf::Color::Black;
-		lines[1].position = sf::Vector2f(pixel_x(mapka[X][Y].parentX), pixel_y(mapka[X][Y].parentY));
-		lines[1].color = sf::Color::Black;
+	//std::cout << "rysuje droge z: (" << mapka[X][Y].x << "," << mapka[X][Y].y << ") do (" << mapka[X][Y].parentX << "," << mapka[X][Y].parentY << ")" << std::endl;
+	while (mapka[X][Y].y != -1  && !(mapka[X][Y].x == mapka[X][Y].parentX && mapka[X][Y].y == mapka[X][Y].parentY) && mapka[X][Y].x != -1) { //zmienione
+		//lines[0].position = sf::Vector2f(pixel_x(mapka[X][Y].x), pixel_y(mapka[X][Y].y));
+		//lines[0].color = sf::Color::Black;
+		//lines[1].position = sf::Vector2f(pixel_x(mapka[X][Y].parentX), pixel_y(mapka[X][Y].parentY));
+		//lines[1].color = sf::Color::Black;
 
-		//mapka[X][Y].shape.setFillColor(sf::Color::Green);
-		//window.draw(mapka[X][Y]);
-		//mapka[mapka[X][Y].parentX][mapka[X][Y].parentY].shape.setFillColor(sf::Color::Green);
-		//window.draw(mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]);
+		mapka[X][Y].shape.setFillColor(sf::Color::Green);
+		window.draw(mapka[X][Y]);
+		mapka[mapka[X][Y].parentX][mapka[X][Y].parentY].shape.setFillColor(sf::Color::Green);
+		window.draw(mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]);
 	
 		//sf::Vertex line[] = { sf::Vertex(sf::Vector2f(pixel_x(mapka[X][Y].x), pixel_y(mapka[X][Y].y)),sf::Vector2f(pixel_x(mapka[X][Y].parentX), pixel_y(mapka[X][Y].parentY))) };
 		//line->color = sf::Color::Red;
 		std::cout << "X,Y: " << mapka[X][Y].x << "," << mapka[X][Y].y << " --> " << mapka[X][Y].parentX << "," << mapka[X][Y].parentY << "\t";
-		X = mapka[X][Y].parentX;
-		Y = mapka[X][Y].parentY;
-		std::cout << "wywalilo sie na: " <<X<<","<<Y<< std::endl;
-		//window.draw(line, 2, sf::Lines);
-		
-		if (X == -1 || Y == -1) {
-			break;
-		}
 
-		window.draw(lines); 
+		int tempX = mapka[X][Y].parentX;
+		Y = mapka[X][Y].parentY;
+		X = tempX;
+
+		std::cout << "nowe X,Y: " <<X<<","<<Y<< std::endl;
+	//	window.draw(line, 2, sf::Lines);
+	
+
+		//window.draw(lines); 
 		
+		window.display();
 	}
-	window.display();
 	std::cout << "sleeping" << std::endl;
-	Sleep(3000);
+	Sleep(20000);
 	std::cout << "end of sleeping" << std::endl;
 }
 //using namespace std;

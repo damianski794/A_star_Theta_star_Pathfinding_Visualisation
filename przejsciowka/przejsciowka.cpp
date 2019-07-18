@@ -18,6 +18,16 @@
 
 //using namespace std;
 
+bool is_inside_the_window(sf::Vector2i a) {
+	if (a.x < 0 || a.x > pixel_x(X_MAX / X_STEP)) {
+		return false;
+	}
+	if (a.y < 0 || a.y >pixel_y(Y_MAX / Y_STEP)) {
+		return false;
+	}
+	return true;
+}
+
 const int columns = Y_MAX / Y_STEP; // ew. na odwrot powinny byc kolumny i wiersze
 const int rows = X_MAX / X_STEP;
 
@@ -149,13 +159,13 @@ int main()
 				//testowane(mapka,poczatek,destination);
 			}
 		}
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {//ustawianie przeszkod
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && is_inside_the_window(sf::Mouse::getPosition(window))) {//ustawianie przeszkod
 			
 			mapka[x_from_pixel(sf::Mouse::getPosition(window).x)][y_from_pixel(sf::Mouse::getPosition(window).y)].isObstacle
 				= true;
 		}
 	
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) { //usuwanie przeszkod
+		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Right) && is_inside_the_window(sf::Mouse::getPosition(window))) { //usuwanie przeszkod
 			mapka[x_from_pixel(sf::Mouse::getPosition(window).x)][y_from_pixel(sf::Mouse::getPosition(window).y)].isObstacle
 				= false;
 		}

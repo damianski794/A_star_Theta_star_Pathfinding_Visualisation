@@ -281,9 +281,9 @@ static void a_star_vector_of_pointers_node_as_pointer(std::array<std::array<Node
 						//check_predecessor(mapka, destination_Node);
 						std::cout << "poprzednik: " << mapka[i_new][j_new].parentX << "," << mapka[i_new][j_new].parentY << std::endl;
 
-						//draw_path(mapka, mapka[i_new][j_new], window);
+						draw_path(mapka, mapka[i_new][j_new], window);
 						//wyswietl_sciezke(mapka, destination_Node);
-						reczne_sprawdzanie_rodzica(mapka, destination_Node);
+						//reczne_sprawdzanie_rodzica(mapka, destination_Node);
 						return;
 					}
 					else if (closeSet[i_new][j_new] == false) {
