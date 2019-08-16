@@ -163,12 +163,13 @@ static void a_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 
 				if (my_isValid_xy(i + newX, j + newY, mapka) == true) {
 
-					//if (mapka[i + newX][j + newY].isObstacle == true)
-					//	std::cout << "sprawdzam przeszkode" << std::endl;
+					if (mapka[i + newX][j + newY].isObstacle == true)
+						std::cout << "sprawdzam przeszkode" << std::endl;
 
 					//mapka[i + newX][j + newY].shape.setFillColor(sf::Color::Magenta); //wylaczone wizualizacja sprawdzanych elementow
 					//window.draw(mapka[i + newX][j + newY].shape);
 					//window.display();
+
 					int i_new = i + newX;
 					int j_new = j + newY;
 					//std::cout << "Checking Node: (" << i_new << "," << j_new<<")" << std::endl;

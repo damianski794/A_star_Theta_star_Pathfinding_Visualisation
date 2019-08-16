@@ -162,6 +162,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Square.h" />
+    <ClInclude Include="Theta_star.h" />
     <ClInclude Include="window_dimensions.h" />
   </ItemGroup>
   <ItemGroup>

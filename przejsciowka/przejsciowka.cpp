@@ -11,6 +11,7 @@
 #include "Node.h"
 #include "Square.h"
 #include "A_star.h"
+#include "Theta_star.h"
 
 
 
@@ -98,6 +99,14 @@ int main()
 				a_star_started = true;
 				std::cout << "wcisnieto A: " << std::endl;
 				a_star(mapka, mapka[0][0], mapka[49][24], window);
+			}
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::T)
+			{
+				//a_star_started = true;
+				std::cout << "wcisnieto T: " << std::endl;
+				//a_star(mapka, mapka[0][0], mapka[49][24], window);
+				line_of_sight(mapka, mapka[0][0], mapka[49][24], window);
+
 			}
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && is_inside_the_window(sf::Mouse::getPosition(window))) {//ustawianie przeszkod

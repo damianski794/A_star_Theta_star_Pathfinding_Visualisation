@@ -7,3 +7,10 @@ const unsigned int X_STEP = 20;
 const unsigned int Y_MAX = 500;
 const unsigned int Y_STEP = 20;
 
+
+//zwiekszyc
+//prorirytet w¹tku
+
+//set treat priority
+//Rafa³ Chojecki
+
