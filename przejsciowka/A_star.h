@@ -141,6 +141,7 @@ static void a_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 		//std::cout << "rozmiar openset" << openset.size() << std::endl;
 		//Node node = *openset.back(); //bylo wczesniej rbegin()
 		Node* node = openset.back();
+		std::cout << "NAJMNIEJSZY FCOST: " << node->fCost << std::endl;
 		/*for (auto it = openset.begin(); it != openset.end();it++) {
 			std::cout << "Rozmiar opeset:"<<openset.size() << std::endl;
 			std::cout << "G: " << it->gCost << std::endl;

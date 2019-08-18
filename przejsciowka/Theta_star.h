@@ -31,9 +31,9 @@ bool line_of_sight(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 			return false;
 		}
 
-		mapka[x_new][y_new].shape.setFillColor(sf::Color::Magenta); //wylaczone wizualizacja sprawdzanych elementow
-		window.draw(mapka[x_new][y_new].shape);
-		window.display();
+		//mapka[x_new][y_new].shape.setFillColor(sf::Color::Magenta); //wylaczone wizualizacja sprawdzanych elementow
+		//window.draw(mapka[x_new][y_new].shape);
+		//window.display();
 		if (i == max - 1)
 			std::cout << "KONIEC" << std::endl;
 	}
@@ -67,7 +67,8 @@ void update_vertex(Node* node,Node& adjecent, std::array<std::array<Node, (Y_MAX
 	if (adjecent.parentX == -1 && adjecent.parentY == -1) {
 		adjecent.parentX = node->x;
 		adjecent.parentY = node->y;
-
+		adjecent.gCost = node->gCost + euclidean_distance(*node, adjecent);
+		adjecent.fCost = adjecent.gCost + adjecent.hCost;
 		std::cout << "nowy element" << std::endl;
 	}
 	//mozliwe, ze trzeba tu troche pogrzebac z nowym gCost i fCost
@@ -90,8 +91,8 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 
 	for (int i = 0; i < (X_MAX / X_STEP); i++) {
 		for (int j = 0; j < (Y_MAX / Y_STEP); j++) {
-			mapka[i][j].fCost = FLT_MAX; //tutaj zmienilem 18.08.2019
-			mapka[i][j].gCost = 1000; //FLT_COS bylo wczesniej
+			mapka[i][j].fCost = 10000; //tutaj zmienilem 18.08.2019// bylo FLT_MAX
+			mapka[i][j].gCost = 10000; //FLT_COS bylo wczesniej
 			mapka[i][j].hCost = my_calcutateH(mapka[i][j], destination_Node); //zmienilem z FLT_MAX
 			mapka[i][j].parentX = -1;
 			mapka[i][j].parentY = -1;
@@ -128,7 +129,7 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 			std::cout << "Rozmiar opeset:"<<openset.size() << std::endl;
 			std::cout << "G: " << it->gCost << std::endl;
 		}*/
-
+		std::cout << "NAJMNIEJSZY FCOST: " << node->fCost << std::endl;
 
 		if (isDestination(node->x, node->y, destination_Node)) {
 			std::cout << "this is the destination" << std::endl;
