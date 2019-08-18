@@ -130,7 +130,7 @@ static void a_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 
 	//current_Node.gCost = 0;
 	mapka[current_Node.x][current_Node.y].gCost = 0;
-	mapka[current_Node.x][current_Node.y].parentX = current_Node.parentX; //pamietaj zeby zmienic na to co wyzzej
+	mapka[current_Node.x][current_Node.y].parentX = current_Node.parentX; //pamietaj zeby zmienic na to co wyzej
 	mapka[current_Node.x][current_Node.y].parentY = current_Node.parentY;
 
 	//bool found_path = false;
@@ -208,7 +208,7 @@ static void a_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 						for (auto it = openset.rbegin(); it != openset.rend(); ++it) { //sprawdzam czy sprawdzany node nie jest w openSet
 							if (**it == mapka[i_new][j_new]) {
 								is_in_openset = true;
-								//break;
+								break;
 							}
 						}
 						//std::cout << "is_in_openset: 1=tak, 0=nie: " << is_in_openset << std::endl;

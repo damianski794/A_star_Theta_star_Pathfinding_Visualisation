@@ -7,11 +7,15 @@
 #include <array>
 #include <cmath>
 
+float euclidean_distance(Node& current_node, Node& destination) {
+	return sqrt((current_node.x - destination.x)*(current_node.x - destination.x) - (current_node.y - destination.y)*(current_node.y - destination.y));
+}
+
 bool line_of_sight(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node& parent_Node, Node& adjecent_Node, sf::RenderWindow& window) {
 	int x1 = parent_Node.x, y1 = parent_Node.y;
 	int x2 = adjecent_Node.x, y2 = adjecent_Node.y;
 	int max = std::max(abs(x1 - x2), abs(y1 - y2));
-	max = 3 * max;
+	//max = 3 * max; //chyba nie potrzeba wiekszej dokladnosci
 	float t;
 	float x, y;
 	for (int i = 0; i <= max; i++) {
@@ -22,15 +26,53 @@ bool line_of_sight(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 		//std::cout << "( " << round(x) << "=" << x << " , " << round(y) << "=" << y << " ) dla t = " << t << std::endl;
 		int y_new = round(y);
 		int x_new = round(x);
-		
-		//mapka[x_new][y_new].shape.setFillColor(sf::Color::Magenta); //wylaczone wizualizacja sprawdzanych elementow
-		//window.draw(mapka[x_new][y_new].shape);
-		//window.display();
+		if (mapka[x_new][y_new].isObstacle) {
+			std::cout << "wykryto przeszkode" << std::endl;
+			return false;
+		}
+
+		mapka[x_new][y_new].shape.setFillColor(sf::Color::Magenta); //wylaczone wizualizacja sprawdzanych elementow
+		window.draw(mapka[x_new][y_new].shape);
+		window.display();
 		if (i == max - 1)
 			std::cout << "KONIEC" << std::endl;
 	}
 	return true;
 }
+
+void update_vertex(Node* node,Node& adjecent, std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka,bool& is_in_openset, sf::RenderWindow& window){
+	if (line_of_sight(mapka, mapka[node->parentX][node->parentY], adjecent, window)) {
+		
+		if ((mapka[node->parentX][node->parentY].gCost + euclidean_distance(mapka[node->parentX][node->parentY], adjecent)) < adjecent.gCost) {
+			adjecent.gCost = mapka[node->parentX][node->parentY].gCost + euclidean_distance(mapka[node->parentX][node->parentY], adjecent);
+			adjecent.parentX = node->parentX;
+			adjecent.parentY = node->parentY;
+
+			adjecent.fCost = adjecent.gCost + adjecent.hCost;
+
+			return;
+		}
+	}
+	else {
+		if ((node->gCost + euclidean_distance(*node, adjecent)) < adjecent.gCost) {
+			adjecent.gCost = node->gCost + euclidean_distance(*node, adjecent);
+			adjecent.parentX = node->x;
+			adjecent.parentY = node->y;
+
+			adjecent.fCost = adjecent.gCost + adjecent.hCost;
+
+			return;
+		}
+	}
+	if (adjecent.parentX == -1 && adjecent.parentY == -1) {
+		adjecent.parentX = node->x;
+		adjecent.parentY = node->y;
+
+		std::cout << "nowy element" << std::endl;
+	}
+	//mozliwe, ze trzeba tu troche pogrzebac z nowym gCost i fCost
+}
+
 
 
 static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node& current_Node, Node& destination_Node, sf::RenderWindow& window) {
@@ -48,7 +90,7 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 
 	for (int i = 0; i < (X_MAX / X_STEP); i++) {
 		for (int j = 0; j < (Y_MAX / Y_STEP); j++) {
-			//mapka[i][j].fCost = FLT_MAX; f cost ustawiam jako nieznane
+			mapka[i][j].fCost = FLT_MAX; //tutaj zmienilem 18.08.2019
 			mapka[i][j].gCost = 1000; //FLT_COS bylo wczesniej
 			mapka[i][j].hCost = my_calcutateH(mapka[i][j], destination_Node); //zmienilem z FLT_MAX
 			mapka[i][j].parentX = -1;
@@ -129,6 +171,7 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 						return;
 					}
 					else if (closeSet[i_new][j_new] == false) {
+						/* from here to::
 						float Fnew; //dodane
 
 						float dist_beetween_node_and_adjastend;
@@ -176,7 +219,21 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 							mapka[i_new][j_new].gCost = tentative_g_score;
 							mapka[i_new][j_new].fCost = mapka[i_new][j_new].gCost + mapka[i_new][j_new].hCost;
 						}
+						*/ //too here::
 
+
+						bool is_in_openset = false;
+
+						for (auto it = openset.rbegin(); it != openset.rend(); ++it) { //sprawdzam czy sprawdzany node nie jest w openSet
+							if (**it == mapka[i_new][j_new]) {
+								is_in_openset = true;
+								//break;
+							}
+						}
+						if (is_in_openset == false) {
+							openset.push_back(&mapka[i_new][j_new]);
+						}
+						update_vertex(node, mapka[i_new][j_new], mapka, is_in_openset, window);
 					}
 
 				}

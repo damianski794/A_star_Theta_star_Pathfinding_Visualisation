@@ -1,22 +1,22 @@
 ﻿  przejsciowka.cpp
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\node.h(119): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\node.h(128): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(112): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\a_star.h(220): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\theta_star.h(19): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\theta_star.h(20): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\theta_star.h(23): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\theta_star.h(24): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\theta_star.h(53): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\theta_star.h(160): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(114): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+d:\damian\przejsciowka_a_star\przejsciowka\node.h(119): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\damian\przejsciowka_a_star\przejsciowka\node.h(128): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\damian\przejsciowka_a_star\przejsciowka\a_star.h(112): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\damian\przejsciowka_a_star\przejsciowka\a_star.h(220): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\damian\przejsciowka_a_star\przejsciowka\theta_star.h(11): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\damian\przejsciowka_a_star\przejsciowka\theta_star.h(23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\damian\przejsciowka_a_star\przejsciowka\theta_star.h(24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\damian\przejsciowka_a_star\przejsciowka\theta_star.h(27): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\damian\przejsciowka_a_star\przejsciowka\theta_star.h(28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+d:\damian\przejsciowka_a_star\przejsciowka\theta_star.h(95): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\damian\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(114): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int
           ]
-d:\politechnika\mel\sem. 6\przejsciowka\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(119): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+d:\damian\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(119): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int
           ]
-  przejsciowka.vcxproj -> D:\politechnika\mel\sem. 6\przejsciowka\Przejsciowka_A_Star\x64\Debug\przejsciowka.exe
+  przejsciowka.vcxproj -> D:\damian\Przejsciowka_A_Star\x64\Debug\przejsciowka.exe

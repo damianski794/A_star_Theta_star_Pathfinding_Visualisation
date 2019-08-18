@@ -105,8 +105,8 @@ int main()
 				//a_star_started = true;
 				std::cout << "wcisnieto T: " << std::endl;
 				//a_star(mapka, mapka[0][0], mapka[49][24], window);
-				line_of_sight(mapka, mapka[0][0], mapka[49][24], window);
-
+				//line_of_sight(mapka, mapka[25][5], mapka[0][24], window);
+				a_star_theta_star(mapka, mapka[0][0], mapka[49][24], window);
 			}
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && is_inside_the_window(sf::Mouse::getPosition(window))) {//ustawianie przeszkod
