@@ -135,6 +135,11 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 			std::cout << "this is the destination" << std::endl;
 			return;
 		}
+
+		node->shape.setFillColor(sf::Color::Red);// 7.09.2019
+		window.draw(node->shape);
+		window.display();
+
 		openset.pop_back(); //drop the last element
 		//std::cout << "rozmiar openset" << openset.size() << std::endl;
 		closeSet[node->x][node->y] = true;

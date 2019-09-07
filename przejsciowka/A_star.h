@@ -148,6 +148,12 @@ static void a_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 		}*/
 
 
+		node->shape.setFillColor(sf::Color::Red);// 7.09.2019
+		window.draw(node->shape);
+		window.display();
+
+
+
 		if (isDestination(node->x, node->y, destination_Node)) {
 			std::cout << "this is the destination" << std::endl;
 			return;
