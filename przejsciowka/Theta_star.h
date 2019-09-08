@@ -8,7 +8,7 @@
 #include <cmath>
 
 float euclidean_distance(Node& current_node, Node& destination) {
-	return sqrt((current_node.x - destination.x)*(current_node.x - destination.x) - (current_node.y - destination.y)*(current_node.y - destination.y));
+	return sqrt((current_node.x - destination.x)*(current_node.x - destination.x) + (current_node.y - destination.y)*(current_node.y - destination.y));
 }
 
 bool line_of_sight(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node& parent_Node, Node& adjecent_Node, sf::RenderWindow& window) {
@@ -65,11 +65,14 @@ void update_vertex(Node* node,Node& adjecent, std::array<std::array<Node, (Y_MAX
 		}
 	}
 	if (adjecent.parentX == -1 && adjecent.parentY == -1) {
-		adjecent.parentX = node->x;
-		adjecent.parentY = node->y;
-		adjecent.gCost = node->gCost + euclidean_distance(*node, adjecent);
-		adjecent.fCost = adjecent.gCost + adjecent.hCost;
-		std::cout << "nowy element" << std::endl;
+		//adjecent.parentX = node->x;
+		//adjecent.parentY = node->y;
+		//adjecent.gCost = node->gCost + euclidean_distance(*node, adjecent);
+		//adjecent.fCost = adjecent.gCost + adjecent.hCost;
+		//std::cout << "nowy element" << std::endl;
+
+		//std::cout << std::endl << std::endl << std::endl << std::endl;
+		//update_vertex(node, adjecent, mapka, is_in_openset, window); //????
 	}
 	//mozliwe, ze trzeba tu troche pogrzebac z nowym gCost i fCost
 }
@@ -129,7 +132,7 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 			std::cout << "Rozmiar opeset:"<<openset.size() << std::endl;
 			std::cout << "G: " << it->gCost << std::endl;
 		}*/
-		std::cout << "NAJMNIEJSZY FCOST: " << node->fCost << std::endl;
+		std::cout << "NAJMNIEJSZY FCOST: " << node->fCost <<"  a openlist zawiera: "<<openset.size()<<" elementow"<< std::endl;
 
 		if (isDestination(node->x, node->y, destination_Node)) {
 			std::cout << "this is the destination" << std::endl;
@@ -233,10 +236,15 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 						for (auto it = openset.rbegin(); it != openset.rend(); ++it) { //sprawdzam czy sprawdzany node nie jest w openSet
 							if (**it == mapka[i_new][j_new]) {
 								is_in_openset = true;
-								//break;
+								break;
 							}
 						}
 						if (is_in_openset == false) {
+							//mapka[i_new][j_new].parentX = node->x;
+							//mapka[i_new][j_new].parentY = node->y;
+							//mapka[i_new][j_new].gCost = node->gCost + euclidean_distance(*node, mapka[i_new][j_new]);
+							//mapka[i_new][j_new].fCost = mapka[i_new][j_new].gCost + mapka[i_new][j_new].hCost;
+
 							openset.push_back(&mapka[i_new][j_new]);
 						}
 						update_vertex(node, mapka[i_new][j_new], mapka, is_in_openset, window);

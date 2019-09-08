@@ -1,14 +1,15 @@
 ﻿  przejsciowka.cpp
 d:\politechnika\mel\przejsciowka_a_star\przejsciowka\node.h(119): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 d:\politechnika\mel\przejsciowka_a_star\przejsciowka\node.h(128): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\politechnika\mel\przejsciowka_a_star\przejsciowka\a_star.h(112): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\przejsciowka_a_star\przejsciowka\a_star.h(227): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\przejsciowka_a_star\przejsciowka\a_star.h(15): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\przejsciowka_a_star\przejsciowka\a_star.h(121): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\przejsciowka_a_star\przejsciowka\a_star.h(236): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\przejsciowka_a_star\przejsciowka\theta_star.h(11): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\przejsciowka_a_star\przejsciowka\theta_star.h(23): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\przejsciowka_a_star\przejsciowka\theta_star.h(24): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\przejsciowka_a_star\przejsciowka\theta_star.h(27): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 d:\politechnika\mel\przejsciowka_a_star\przejsciowka\theta_star.h(28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-d:\politechnika\mel\przejsciowka_a_star\przejsciowka\theta_star.h(96): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+d:\politechnika\mel\przejsciowka_a_star\przejsciowka\theta_star.h(99): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 d:\politechnika\mel\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(124): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [

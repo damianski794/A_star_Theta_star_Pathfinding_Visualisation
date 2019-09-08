@@ -11,8 +11,12 @@
 #include <iostream>
 
 #include <Windows.h>
-void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node destination, sf::RenderWindow& window) {
+float euclidean_distance1(Node& current_node, Node& destination) {
+	return sqrt((current_node.x - destination.x)*(current_node.x - destination.x) + (current_node.y - destination.y)*(current_node.y - destination.y));
+}
 
+void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node destination, sf::RenderWindow& window) {
+	float dlugosc_sciezki = 0;
 	//z innego algorytmu:
 	//for (int i = 0; i < 12; i++) {
 	//	for (int j = 0; j < 12; j++) {
@@ -41,6 +45,8 @@ void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>&
 		//sf::Vertex line[] = { sf::Vertex(sf::Vector2f(pixel_x(mapka[X][Y].x), pixel_y(mapka[X][Y].y)),sf::Vector2f(pixel_x(mapka[X][Y].parentX), pixel_y(mapka[X][Y].parentY))) };
 		//line->color = sf::Color::Red;
 		std::cout << "X,Y: " << mapka[X][Y].x << "," << mapka[X][Y].y << " --> " << mapka[X][Y].parentX << "," << mapka[X][Y].parentY << "\t";
+		std::cout << "zostanie_dodane: " << euclidean_distance1(mapka[X][Y], mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]) << std::endl;
+		dlugosc_sciezki += euclidean_distance1(mapka[X][Y], mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]);
 
 		int tempX = mapka[X][Y].parentX;
 		Y = mapka[X][Y].parentY;
@@ -54,9 +60,12 @@ void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>&
 		
 		window.display();
 	}
+
+	std::cout<<"DLUGOSC SCIEZKI TO: "<<dlugosc_sciezki<<std::endl;
 	std::cout << "sleeping" << std::endl;
 	Sleep(4000);
 	std::cout << "end of sleeping" << std::endl;
+
 }
 
 static std::vector<Node> makePath(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)> map, Node dest) {
