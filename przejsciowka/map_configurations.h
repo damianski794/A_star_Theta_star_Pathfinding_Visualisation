@@ -75,3 +75,11 @@ void config3(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& m
 
 	std::cout << "na tym configu theta nie ogarnia" << std::endl;
 }
+
+void config0(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, sf::RenderWindow& window) { //clear all
+	for (int i = 0; i < X_MAX / X_STEP; i++) {
+		for (int j = 0; j < Y_MAX / Y_STEP; j++) {
+			mapka[i][j].isObstacle = false;
+		}
+	}
+}

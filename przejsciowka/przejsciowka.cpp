@@ -109,6 +109,9 @@ int main()
 				//line_of_sight(mapka, mapka[25][5], mapka[0][24], window);
 				a_star_theta_star(mapka, mapka[0][0], mapka[49][24], window);
 			}
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad0) {
+				config0(mapka, window);
+			}
 			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad1) {
 				config1_2collumns(mapka, window);
 			}

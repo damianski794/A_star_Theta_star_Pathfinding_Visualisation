@@ -11,6 +11,8 @@
 #include <iostream>
 
 #include <Windows.h>
+
+#include <cmath>
 float euclidean_distance1(Node& current_node, Node& destination) {
 	return sqrt((current_node.x - destination.x)*(current_node.x - destination.x) + (current_node.y - destination.y)*(current_node.y - destination.y));
 }
@@ -38,12 +40,30 @@ void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>&
 		//lines[1].color = sf::Color::Black;
 
 		mapka[X][Y].shape.setFillColor(sf::Color::Green);
-		window.draw(mapka[X][Y]);
+		//window.draw(mapka[X][Y]);
 		mapka[mapka[X][Y].parentX][mapka[X][Y].parentY].shape.setFillColor(sf::Color::Green);
-		window.draw(mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]);
-	
-		//sf::Vertex line[] = { sf::Vertex(sf::Vector2f(pixel_x(mapka[X][Y].x), pixel_y(mapka[X][Y].y)),sf::Vector2f(pixel_x(mapka[X][Y].parentX), pixel_y(mapka[X][Y].parentY))) };
-		//line->color = sf::Color::Red;
+		//window.draw(mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]);
+
+
+		//sf::RectangleShape line(sf::Vector2f(euclidean_distance1(mapka[X][Y], mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]), 50));
+		//line.rotate(90);
+		//line.setFillColor(sf::Color::Green);
+		//line.setOrigin
+		//window.draw(line);
+
+		float single_line_dist = X_STEP * euclidean_distance1(mapka[X][Y], mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]);
+		sf::RectangleShape line2(sf::Vector2f(single_line_dist, 5));
+
+		float line_y = (Y - mapka[X][Y].parentY); // - bo w sfml y zwieksza sie w dol ekranu
+		float line_x = (X - mapka[X][Y].parentX);
+
+		line2.rotate(atan2(line_y,line_x)*180/3.14);
+		line2.setPosition(pixel_x(mapka[X][Y].parentX),pixel_y(mapka[X][Y].parentY));
+
+		line2.setFillColor(sf::Color::Green);
+		window.draw(line2);
+
+		
 		std::cout << "X,Y: " << mapka[X][Y].x << "," << mapka[X][Y].y << " --> " << mapka[X][Y].parentX << "," << mapka[X][Y].parentY << "\t";
 		std::cout << "zostanie_dodane: " << euclidean_distance1(mapka[X][Y], mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]) << std::endl;
 		dlugosc_sciezki += euclidean_distance1(mapka[X][Y], mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]);
@@ -58,8 +78,8 @@ void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>&
 
 		//window.draw(lines); 
 		
-		window.display();
 	}
+	window.display();
 
 	std::cout<<"DLUGOSC SCIEZKI TO: "<<dlugosc_sciezki<<std::endl;
 	std::cout << "sleeping" << std::endl;
