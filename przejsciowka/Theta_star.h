@@ -15,7 +15,7 @@ bool line_of_sight(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 	int x1 = parent_Node.x, y1 = parent_Node.y;
 	int x2 = adjecent_Node.x, y2 = adjecent_Node.y;
 	int max = std::max(abs(x1 - x2), abs(y1 - y2));
-	//max = 3 * max; //chyba nie potrzeba wiekszej dokladnosci
+	max = 3 * max; //chyba nie potrzeba wiekszej dokladnosci
 	float t;
 	float x, y;
 	for (int i = 0; i <= max; i++) {
@@ -136,6 +136,7 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 
 		if (isDestination(node->x, node->y, destination_Node)) {
 			std::cout << "this is the destination" << std::endl;
+			draw_path(mapka, *node, window);
 			return;
 		}
 
@@ -167,6 +168,7 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 					//std::cout << "Checking Node: (" << i_new << "," << j_new<<")" << std::endl;
 
 					//std::cout << "wartosc closeset: " << closeSet[i_new][j_new] << std::endl;
+					/*
 					if (my_isDestination(mapka[i_new][j_new], destination_Node) == true) {
 						mapka[i_new][j_new].parentX = mapka[i][j].x;
 						mapka[i_new][j_new].parentY = mapka[i][j].y;
@@ -178,8 +180,8 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 						draw_path(mapka, mapka[i_new][j_new], window);
 						
 						return;
-					}
-					else if (closeSet[i_new][j_new] == false) {
+					} */
+					if (closeSet[i_new][j_new] == false) {
 						/* from here to::
 						float Fnew; //dodane
 

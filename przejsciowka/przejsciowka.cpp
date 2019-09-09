@@ -121,6 +121,12 @@ int main()
 			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad3) {
 				config3(mapka, window);
 			}
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad4) {
+				config4(mapka, window);
+			}
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad5) {
+				config5(mapka, window);
+			}
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && is_inside_the_window(sf::Mouse::getPosition(window))) {//ustawianie przeszkod
 			

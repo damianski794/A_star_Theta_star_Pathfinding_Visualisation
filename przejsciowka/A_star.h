@@ -25,7 +25,7 @@ void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>&
 	//		std::cout << "" << i << "," << j << " --> parent " << mapka[i][j].parentX << "," << mapka[i][j].parentY << std::endl;
 	//	}
 	//}
-	std::cout << std::endl << std::endl;
+	//std::cout << std::endl << std::endl;
 
 	//sf::VertexArray lines(sf::LinesStrip, 2);
 	int X = destination.x;
@@ -83,7 +83,7 @@ void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>&
 
 	std::cout<<"DLUGOSC SCIEZKI TO: "<<dlugosc_sciezki<<std::endl;
 	std::cout << "sleeping" << std::endl;
-	Sleep(7000);
+	Sleep(4000);
 	std::cout << "end of sleeping" << std::endl;
 
 }
@@ -185,6 +185,7 @@ static void a_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 
 		if (isDestination(node->x, node->y, destination_Node)) {
 			std::cout << "this is the destination" << std::endl;
+			draw_path(mapka, *node, window);
 			return;
 		}
 		openset.pop_back(); //drop the last element
@@ -211,20 +212,23 @@ static void a_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 					//std::cout << "Checking Node: (" << i_new << "," << j_new<<")" << std::endl;
 
 					//std::cout << "wartosc closeset: " << closeSet[i_new][j_new] << std::endl;
-					if (my_isDestination(mapka[i_new][j_new], destination_Node) == true) {
+					/*if (my_isDestination(mapka[i_new][j_new], destination_Node) == true) {
 						mapka[i_new][j_new].parentX = mapka[i][j].x;
 						mapka[i_new][j_new].parentY = mapka[i][j].y;
+
+						//ponizej 9.09.2019
 						std::cout << "you are at the destination, a_star found path" << std::endl;
+						//draw_path(mapka, mapka[i_new][j_new], window);
+						//return;
 
 						//check_predecessor(mapka, destination_Node);
 						//std::cout << "poprzednik: " << mapka[i_new][j_new].parentX << "," << mapka[i_new][j_new].parentY << std::endl;
 
-						draw_path(mapka, mapka[i_new][j_new], window);
 						//wyswietl_sciezke(mapka, destination_Node);
 						//reczne_sprawdzanie_rodzica(mapka, destination_Node);
-						return;
 					}
-					else if (closeSet[i_new][j_new] == false) {
+					*/
+					if (closeSet[i_new][j_new] == false) {
 						float Fnew; //dodane
 
 						float dist_beetween_node_and_adjastend;
