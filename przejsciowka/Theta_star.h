@@ -27,15 +27,15 @@ bool line_of_sight(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 		int y_new = round(y);
 		int x_new = round(x);
 		if (mapka[x_new][y_new].isObstacle) {
-			std::cout << "wykryto przeszkode" << std::endl;
+			//std::cout << "wykryto przeszkode" << std::endl;
 			return false;
 		}
 
 		//mapka[x_new][y_new].shape.setFillColor(sf::Color::Magenta); //wylaczone wizualizacja sprawdzanych elementow
 		//window.draw(mapka[x_new][y_new].shape);
 		//window.display();
-		if (i == max - 1)
-			std::cout << "KONIEC" << std::endl;
+		//if (i == max - 1)
+		//	std::cout << "KONIEC" << std::endl;
 	}
 	return true;
 }
@@ -132,16 +132,16 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 			std::cout << "Rozmiar opeset:"<<openset.size() << std::endl;
 			std::cout << "G: " << it->gCost << std::endl;
 		}*/
-		std::cout << "NAJMNIEJSZY FCOST: " << node->fCost <<"  a openlist zawiera: "<<openset.size()<<" elementow"<< std::endl;
+		//std::cout << "NAJMNIEJSZY FCOST: " << node->fCost <<"  a openlist zawiera: "<<openset.size()<<" elementow"<< std::endl;
 
 		if (isDestination(node->x, node->y, destination_Node)) {
 			std::cout << "this is the destination" << std::endl;
 			return;
 		}
 
-		node->shape.setFillColor(sf::Color::Red);// 7.09.2019
-		window.draw(node->shape);
-		window.display();
+		//node->shape.setFillColor(sf::Color::Red);// 7.09.2019 //odkomentuj zeby zobaczyc jakie nody sa aktualnie sprawdzane
+		//window.draw(node->shape);
+		//window.display();
 
 		openset.pop_back(); //drop the last element
 		//std::cout << "rozmiar openset" << openset.size() << std::endl;
@@ -173,7 +173,7 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 						std::cout << "you are at the destination, a_star found path" << std::endl;
 
 						//check_predecessor(mapka, destination_Node);
-						std::cout << "poprzednik: " << mapka[i_new][j_new].parentX << "," << mapka[i_new][j_new].parentY << std::endl;
+						//std::cout << "poprzednik: " << mapka[i_new][j_new].parentX << "," << mapka[i_new][j_new].parentY << std::endl;
 
 						draw_path(mapka, mapka[i_new][j_new], window);
 						

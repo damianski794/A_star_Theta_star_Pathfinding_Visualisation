@@ -64,15 +64,15 @@ void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>&
 		window.draw(line2);
 
 		
-		std::cout << "X,Y: " << mapka[X][Y].x << "," << mapka[X][Y].y << " --> " << mapka[X][Y].parentX << "," << mapka[X][Y].parentY << "\t";
-		std::cout << "zostanie_dodane: " << euclidean_distance1(mapka[X][Y], mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]) << std::endl;
+		//std::cout << "X,Y: " << mapka[X][Y].x << "," << mapka[X][Y].y << " --> " << mapka[X][Y].parentX << "," << mapka[X][Y].parentY << "\t";
+		//std::cout << "zostanie_dodane: " << euclidean_distance1(mapka[X][Y], mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]) << std::endl;
 		dlugosc_sciezki += euclidean_distance1(mapka[X][Y], mapka[mapka[X][Y].parentX][mapka[X][Y].parentY]);
 
 		int tempX = mapka[X][Y].parentX;
 		Y = mapka[X][Y].parentY;
 		X = tempX;
 
-		std::cout << "nowe X,Y: " <<X<<","<<Y<< std::endl;
+		//std::cout << "nowe X,Y: " <<X<<","<<Y<< std::endl;
 	//	window.draw(line, 2, sf::Lines);
 	
 
@@ -83,7 +83,7 @@ void draw_path(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>&
 
 	std::cout<<"DLUGOSC SCIEZKI TO: "<<dlugosc_sciezki<<std::endl;
 	std::cout << "sleeping" << std::endl;
-	Sleep(4000);
+	Sleep(7000);
 	std::cout << "end of sleeping" << std::endl;
 
 }
@@ -170,16 +170,16 @@ static void a_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 		//std::cout << "rozmiar openset" << openset.size() << std::endl;
 		//Node node = *openset.back(); //bylo wczesniej rbegin()
 		Node* node = openset.back();
-		std::cout << "NAJMNIEJSZY FCOST: " << node->fCost << std::endl;
+		//std::cout << "NAJMNIEJSZY FCOST: " << node->fCost << std::endl;
 		/*for (auto it = openset.begin(); it != openset.end();it++) {
 			std::cout << "Rozmiar opeset:"<<openset.size() << std::endl;
 			std::cout << "G: " << it->gCost << std::endl;
 		}*/
 
 
-		node->shape.setFillColor(sf::Color::Red);// 7.09.2019
-		window.draw(node->shape);
-		window.display();
+		//node->shape.setFillColor(sf::Color::Red);// 7.09.2019 //odkomentuj zeby zobaczyc ktory node jest akutalnie sprawdzany
+		//window.draw(node->shape);
+		//window.display();
 
 
 
@@ -217,7 +217,7 @@ static void a_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 						std::cout << "you are at the destination, a_star found path" << std::endl;
 
 						//check_predecessor(mapka, destination_Node);
-						std::cout << "poprzednik: " << mapka[i_new][j_new].parentX << "," << mapka[i_new][j_new].parentY << std::endl;
+						//std::cout << "poprzednik: " << mapka[i_new][j_new].parentX << "," << mapka[i_new][j_new].parentY << std::endl;
 
 						draw_path(mapka, mapka[i_new][j_new], window);
 						//wyswietl_sciezke(mapka, destination_Node);
