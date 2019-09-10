@@ -13,12 +13,12 @@ d:\politechnika\mel\przejsciowka_a_star\przejsciowka\theta_star.h(24): warning C
 d:\politechnika\mel\przejsciowka_a_star\przejsciowka\theta_star.h(27): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 d:\politechnika\mel\przejsciowka_a_star\przejsciowka\theta_star.h(28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
 d:\politechnika\mel\przejsciowka_a_star\przejsciowka\theta_star.h(99): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-d:\politechnika\mel\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(133): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+d:\politechnika\mel\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(143): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int
           ]
-d:\politechnika\mel\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(138): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+d:\politechnika\mel\przejsciowka_a_star\przejsciowka\przejsciowka.cpp(148): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
           with
           [
               T=int

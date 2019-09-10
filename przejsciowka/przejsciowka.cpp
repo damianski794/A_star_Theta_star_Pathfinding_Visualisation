@@ -14,7 +14,7 @@
 #include "Theta_star.h"
 
 #include "map_configurations.h"
-
+#include "save_to_file.h"
 
 bool is_inside_the_window(sf::Vector2i a) {
 	if (a.x < 0 || a.x > pixel_x(X_MAX / X_STEP)) {
@@ -113,7 +113,7 @@ int main()
 				config0(mapka, window);
 			}
 			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad1) {
-				config1_2collumns(mapka, window);
+				config1(mapka, window);
 			}
 			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad2) {
 				config2(mapka, window);
@@ -126,6 +126,16 @@ int main()
 			}
 			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad5) {
 				config5(mapka, window);
+			}
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad6) {
+				config6(mapka, window);
+			}
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Numpad7) {
+				config7(mapka, window);
+			}
+			if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::S) {
+				save_to_file("map_configuration.txt", mapka);
+				std::cout << "dodano do pliku" << std::endl;
 			}
 		}
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && is_inside_the_window(sf::Mouse::getPosition(window))) {//ustawianie przeszkod
