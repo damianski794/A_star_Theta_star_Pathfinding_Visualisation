@@ -1,1 +1,1 @@
-# Przejsciowka_A_Star
+# Przejsciowka_A_Star&Theta_Star
