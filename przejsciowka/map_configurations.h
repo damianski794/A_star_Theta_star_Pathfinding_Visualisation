@@ -2518,7 +2518,6 @@ void config2(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& m
 	mapka[49][22].isObstacle = false;
 	mapka[49][23].isObstacle = false;
 	mapka[49][24].isObstacle = false;
-s
 	std::cout << "wczytano config nr 2" << std::endl;
 }
 void config3(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, sf::RenderWindow& window) {
