@@ -13,6 +13,8 @@
 #include <Windows.h>
 
 #include <cmath>
+
+#include <chrono>
 float euclidean_distance1(Node& current_node, Node& destination) {
 	return sqrt((current_node.x - destination.x)*(current_node.x - destination.x) + (current_node.y - destination.y)*(current_node.y - destination.y));
 }
@@ -123,6 +125,8 @@ static std::vector<Node> makePath(std::array<std::array<Node, (Y_MAX / Y_STEP)>,
 
 static void a_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node& current_Node, Node& destination_Node, sf::RenderWindow& window) {
 
+	auto start_time = std::chrono::high_resolution_clock::now();
+	
 	if (current_Node.x == destination_Node.x && current_Node.y == destination_Node.y) {
 		std::cout << "you are at the destination" << std::endl;
 		return;
@@ -184,7 +188,12 @@ static void a_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 
 
 		if (isDestination(node->x, node->y, destination_Node)) {
-			std::cout << "this is the destination" << std::endl;
+			//std::cout << "this is the destination" << std::endl;
+
+			auto end_time = std::chrono::high_resolution_clock::now();
+			auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
+			std::cout << "Algorithm time (in miliseconds) is: " << double(duration.count()) / 1000 << std::endl;
+
 			draw_path(mapka, *node, window);
 			return;
 		}
@@ -257,7 +266,7 @@ static void a_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STE
 						//}
 						if (is_in_openset == false) {
 							//std::cout << "dodano element" << std::endl;
-							mapka[i_new][j_new].hCost = my_calcutateH(mapka[i_new][j_new], destination_Node);
+							//mapka[i_new][j_new].hCost = my_calcutateH(mapka[i_new][j_new], destination_Node);
 							mapka[i_new][j_new].fCost = Fnew;
 							mapka[i_new][j_new].gCost = tentative_g_score;
 							mapka[i_new][j_new].parentX = mapka[i][j].x;

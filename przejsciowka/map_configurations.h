@@ -2574,6 +2574,7 @@ void config4(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& m
 	for (int j = 11; j < 16; j++) {
 		mapka[25][j].isObstacle = true;
 	}
+	std::cout << "wczytano config nr 4" << std::endl;
 }
 
 //config 5 //jak sie uda odtworzyc to bedzie supcio
@@ -2658,6 +2659,7 @@ void config5(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& m
 	//pozostale punkty
 	mapka[17][9].isObstacle = true;
 	mapka[29][24].isObstacle = true;
+	std::cout << "wczytano config nr 5" << std::endl;
 }
 void config6(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, sf::RenderWindow& window) {
 	mapka[0][0].isObstacle = false;
@@ -3910,6 +3912,7 @@ void config6(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& m
 	mapka[49][22].isObstacle = false;
 	mapka[49][23].isObstacle = false;
 	mapka[49][24].isObstacle = false;
+	std::cout << "wczytano config nr 6" << std::endl;
 }
 void config7(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, sf::RenderWindow& window) {
 	mapka[0][0].isObstacle = false;
@@ -5162,5 +5165,5 @@ void config7(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& m
 	mapka[49][22].isObstacle = false;
 	mapka[49][23].isObstacle = false;
 	mapka[49][24].isObstacle = false;
-
+	std::cout << "wczytano config nr 7" << std::endl;
 }

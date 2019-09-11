@@ -6,6 +6,7 @@
 #include <vector>
 #include <array>
 #include <cmath>
+#include <chrono>
 
 float euclidean_distance(Node& current_node, Node& destination) {
 	return sqrt((current_node.x - destination.x)*(current_node.x - destination.x) + (current_node.y - destination.y)*(current_node.y - destination.y));
@@ -80,6 +81,7 @@ void update_vertex(Node* node,Node& adjecent, std::array<std::array<Node, (Y_MAX
 
 
 static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_MAX / X_STEP)>& mapka, Node& current_Node, Node& destination_Node, sf::RenderWindow& window) {
+	auto start_time = std::chrono::high_resolution_clock::now();
 
 	if (current_Node.x == destination_Node.x && current_Node.y == destination_Node.y) {
 		std::cout << "you are at the destination" << std::endl;
@@ -135,7 +137,12 @@ static void a_star_theta_star(std::array<std::array<Node, (Y_MAX / Y_STEP)>, (X_
 		//std::cout << "NAJMNIEJSZY FCOST: " << node->fCost <<"  a openlist zawiera: "<<openset.size()<<" elementow"<< std::endl;
 
 		if (isDestination(node->x, node->y, destination_Node)) {
-			std::cout << "this is the destination" << std::endl;
+			//std::cout << "this is the destination" << std::endl;
+
+			auto end_time = std::chrono::high_resolution_clock::now();
+			auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
+			std::cout << "Algorithm time (in miliseconds) is: " << double(duration.count()) / 1000 << std::endl;
+
 			draw_path(mapka, *node, window);
 			return;
 		}
